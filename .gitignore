@@ -1,0 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Ignore the 'my_env' virtual environment directory
+my_env/
+
+# Ignore egg-info directory
+my_health_check.egg-info/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# MacOS-specific files
+.DS_Store
+
+# Windows-specific files
+Thumbs.db
+ehthumbs.db
+
+# Python testing-related files
+.cache/
+pytest_cache/
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# PyInstaller
+*.spec
+
+# Config directory contents (if you don't want to commit these)
+#config/
+
+# Ignore any files created by editors
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Ignore any backup or temporary files
+*.bak
+*.tmp
