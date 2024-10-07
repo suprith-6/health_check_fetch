@@ -39,4 +39,4 @@ class HealthChecker:
             up_count = statuses[0]
             availability = round(100 * up_count / statuses[1])
             print(f"{domain} has {availability}% availability percentage")
-        print(self.domains_status)             # for testing the counts
+        #print(self.domains_status)             # for testing the counts
