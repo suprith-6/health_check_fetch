@@ -7,6 +7,7 @@ setup(
     install_requires=[
         "requests",
         "PyYAML",
+        "aiohttp",
     ],
     entry_points={
         'console_scripts': [
@@ -16,6 +17,5 @@ setup(
     description="A simple package to check HTTP endpoint health",
     author="Suprith",
     author_email="suprithkp.007@gmil.com",
-    #url="https://github.com/your-repo-url",  # Optional
+    url="https://github.com/suprith-6/health_check_fetch.git",
 )
-

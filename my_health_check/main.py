@@ -1,8 +1,9 @@
 import argparse
+import asyncio
 import yaml
 from my_health_check.checker import HealthChecker
 
-def main():
+async def main():
     parser = argparse.ArgumentParser(description="Health check for HTTP endpoints")
     parser.add_argument("config_file", help="Path to YAML configuration file")
     args = parser.parse_args()
@@ -11,7 +12,7 @@ def main():
         config = yaml.safe_load(file)
     
     checker = HealthChecker(config)
-    checker.run()
+    await checker.run()
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
