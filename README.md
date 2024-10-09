@@ -87,12 +87,15 @@ The tool will check each endpoint specified in the YAML file, log the result (`U
 ### Example Output:
 
 ```
-fetch.com has 67% availability percentage after 3 checks
-www.fetchrewards.com has 100% availability percentage after 1 check
+2024-10-09 02:37:10 - INFO - https://fetch.com/ - Status: UP, Response Time: 0.08 seconds
+2024-10-09 02:37:10 - INFO - https://fetch.com/careers - Status: UP, Response Time: 0.09 seconds
+2024-10-09 02:37:10 - INFO - https://fetch.com/some/post/endpoint - Status: DOWN, Response Time: 0.09 seconds
+2024-10-09 02:37:11 - INFO - https://www.fetchrewards.com/ - Status: UP, Response Time: 0.20 seconds
+2024-10-09 02:37:11 - INFO - fetch.com - Availability: 67% (6/9)
+2024-10-09 02:37:11 - INFO - www.fetchrewards.com - Availability: 100% (3/3)
 ```
 
-### Customization:
-The interval between health checks is 5 seconds by default. To modify this interval, change the `time.sleep()` value in the `checker.py` file.
+
 
 ## Development
 
@@ -102,7 +105,10 @@ If you are working on the project and want to make changes while keeping the env
 pip install -e .
 ```
 
-## Contributing
+## Running Tests
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+To run the unit tests, use the following command:
+
+```bash
+python -m unittest discover tests
 

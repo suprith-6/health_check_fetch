@@ -10,7 +10,7 @@ if sys.platform == 'win32':
 
 logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s",
-    level=logging.INFO,  # Set the default log level to INFO
+    level=logging.INFO,  
     datefmt="%Y-%m-%d %H:%M:%S"
 )
 
@@ -22,13 +22,17 @@ class HealthChecker:
 
     async def run(self):
         while True:
+            start_time = time.monotonic()
             tasks=[self.check_endpoint(endpoint) for endpoint in self.config]
-            # duration_start=time.monotonic()
             await asyncio.gather(*tasks)
             self.log_results()
-            #duration_end=time.monotonic()
-            # await asyncio.sleep(15-(duration_start-duration_end))
-            await asyncio.sleep(15)
+            elapsed_time = time.monotonic() - start_time
+            # Ensure the next cycle starts exactly after 15 seconds
+            if elapsed_time < 15:
+                await asyncio.sleep(15 - elapsed_time)
+            else:
+                logging.warning(f"Health checks took {elapsed_time} seconds, skipping sleep")
+                await asyncio.sleep(elapsed_time)
 
     async def check_endpoint(self, endpoint):
         url = endpoint['url']
@@ -50,12 +54,10 @@ class HealthChecker:
         except aiohttp.ClientError as e:
             status = 'DOWN'
             logging.error(f"{url} - ClientError: {e}")
-        except:
+        except Exception as e:
+            status = 'DOWN'
             print(e)
-        # except OSError as e:
-        #     logging.error(f"OS-level error occurred: {e}")
-
-        
+ 
         domain = url.split('//')[1].split('/')[0]
 
         async with self.lock:
@@ -70,6 +72,5 @@ class HealthChecker:
         for domain, statuses in self.domains_status.items():
             up_count = statuses[0]
             availability = round(100 * up_count / statuses[1])
-            #print(f"{domain} has {availability}% availability percentage")
             logging.info(f"{domain} - Availability: {availability}% ({up_count}/{statuses[1]})")
-        #print(self.domains_status)             # for testing the counts
+        

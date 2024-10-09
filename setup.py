@@ -9,6 +9,9 @@ setup(
         "PyYAML",
         "aiohttp",
     ],
+    tests_require=[
+        "unittest",
+    ],
     entry_points={
         'console_scripts': [
             'health-check=my_health_check.main:main',
