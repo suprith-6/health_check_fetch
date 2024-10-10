@@ -36,7 +36,7 @@ class HealthChecker:
 
     async def check_endpoint(self, endpoint):
         url = endpoint['url']
-        method = endpoint.get('method', 'GET')
+        method = endpoint.get('method', 'GET')  # Default to 'GET' if no HTTP method is specified in the YAML configuration
         headers = endpoint.get('headers', {})
         body = endpoint.get('body', None)
         

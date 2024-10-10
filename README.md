@@ -9,7 +9,7 @@ A Python-based tool that periodically checks the health of HTTP endpoints and ca
 
 ## Prerequisites
 - Python 3.6 or higher
-- `requests` and `PyYAML` libraries
+- `requests` , `PyYAML` and `aiohttp` libraries
 
 ## Installation
 
@@ -68,6 +68,8 @@ Create a configuration YAML file in the `config/` directory that defines the end
   url: https://www.fetchrewards.com/
 ```
 
+**Note**: If the `method` is not specified, the default HTTP method will be `GET`.
+
 ### YAML Fields:
 - `url`: The URL of the endpoint.
 - `method`: The HTTP method (defaults to `GET` if not provided).
@@ -95,8 +97,6 @@ The tool will check each endpoint specified in the YAML file, log the result (`U
 2024-10-09 02:37:11 - INFO - www.fetchrewards.com - Availability: 100% (3/3)
 ```
 
-
-
 ## Development
 
 If you are working on the project and want to make changes while keeping the environment up-to-date, ensure the project is installed in **editable mode** by running:
@@ -111,4 +111,5 @@ To run the unit tests, use the following command:
 
 ```bash
 python -m unittest discover tests
+```
 
